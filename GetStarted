@@ -1,0 +1,20 @@
+In WebStorm:
+Set Javascript version to ECMAScript6 File | Settings | Languages & Frameworks | Javascript
+You may want to select strict mode and type only intellisense as well
+Create Git Repo
+Clone repo to local machine
+Copy Aurelia skeleton and adjust source as described here:
+http://www.programwitherik.com/what-you-should-know-about-aurelia-javascript-client-framework/
+When instructed to delete the src folder - leave the main.js in tact
+Setup Run Tasks:
+Add new run configuration for:
+ - javascript
+ - gulp build task (to run before javascript task)
+
+Add Typescript and testing capability as described here
+http://www.mikeobrien.net/blog/setting-up-a-typescript-aurelia-app-and-tests-from-scratch/
+Code Todo app: see:
+https://github.com/cmichaelgraham/aurelia-typescript#todo-sample
+
+Debugging:
+https://www.jetbrains.com/help/webstorm/11.0/using-jetbrains-chrome-extension.html
