@@ -10,9 +10,9 @@ export class App {
   constructor(router) {
     this.router = router;
     this.router.configure(config => {
-      config.title = 'Test App';
+      config.title = 'Todo App';
     config.map([
-      { route: ['','start'], moduleId: 'start', nav: true, title:'Starting With Aurelia' }
+      { route: ['','tasks'], moduleId: 'tasks', nav: true, title:'Tasks with Aurelia' }
     ]);
   });
   }

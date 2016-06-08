@@ -1,0 +1,54 @@
+<template>
+  <section>
+    <h2>${heading}</h2>
+
+    <form role="form" submit.delegate="addTask()" style="width: 250px">
+      <div class="form-group" >
+        <label for="fn">Task Description</label>
+        <input type="text"
+               value.bind="model.description"
+               class="form-control"
+               id="fn"
+               placeholder="task description">
+      </div>
+      <div class="form-group">
+        <label for="ln">Task Due Date</label>
+        <input type="date" value.bind="model.dueDate" class="form-control" id="ln" placeholder="due Date">
+      </div>
+      <button type="submit" class="btn btn-default">Add Task</button>
+    </form>
+    <br/>
+    <div>
+      <div class="filter" >
+        <label >Filter</label>
+        <input type="text" value.bind="searchText" placeholder="type search text..." keyup.delegate="filterTasks()"/>
+      </div>
+      <div class="switch" >
+        <label>Show Completed</label>
+        <input id="cmn-toggle-1"
+               class="cmn-toggle cmn-toggle-round"
+               type="checkbox"
+               checked.bind="showCompleted">
+        <label for="cmn-toggle-1"></label>
+      </div>
+
+    </div>
+
+    <div class="toolbar">
+      <button  click.delegate="deleteCompletedTasks()">Delete Done</button>
+      <button click.delegate="deleteAllTasks()">Delete All</button>
+    </div>
+
+    <br/>
+    <div >
+      <ul id="todoList">
+        <li repeat.for="todoItem of filteredItems" class.bind="todoItem.isDone ? 'done' : ''">
+          <input type="checkbox" checked.bind="todoItem.isDone" />
+          <span id="spanTodo">${todoItem.description}</span>
+          <span id="spanDate">${todoItem.completeBy}</span>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+</template>

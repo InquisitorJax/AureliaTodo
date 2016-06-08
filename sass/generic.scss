@@ -1,0 +1,11 @@
+@import 'layout.scss';
+
+$font-stack: Segoe UI, sans-serif;
+$primary-color: #FF3500;
+$background-color: #FFE;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+  background-color: $background-color;
+}

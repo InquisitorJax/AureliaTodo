@@ -4,6 +4,7 @@ var exportSrvRoot = 'export/';
 
 module.exports = {
   root: appRoot,
+  sassFiles: 'sass/**/*.scss',
   source: appRoot + '**/*.js',
   html: appRoot + '**/*.html',
   css: appRoot + '**/*.css',

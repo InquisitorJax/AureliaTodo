@@ -18,3 +18,11 @@ https://github.com/cmichaelgraham/aurelia-typescript#todo-sample
 
 Debugging:
 https://www.jetbrains.com/help/webstorm/11.0/using-jetbrains-chrome-extension.html
+Other Sample Aurelia Todo:
+https://github.com/mhoyer/todomvc-aurelia
+
+Additional dependencies:
+gulp-sass
+gulp-clean
+
+Aurelia Validation from: http://blog.durandal.io/2016/05/03/aurelias-new-validation-and-testing-capabilities/
