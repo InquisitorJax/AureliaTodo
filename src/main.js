@@ -3,8 +3,8 @@ import 'bootstrap';
 export function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
-    //.plugin('aurelia-validatejs')
-    .developmentLogging();
+    .developmentLogging()
+    .plugin('aurelia-validatejs');
 
   //Uncomment the line below to enable animation.
   //aurelia.use.plugin('aurelia-animator-css');

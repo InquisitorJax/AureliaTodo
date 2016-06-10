@@ -5,16 +5,24 @@
 import TodoRepo from './todoRepo';
 import TodoItem from './todoItem';
 import {BindingEngine, inject} from 'aurelia-framework';
+import {ValidationEngine} from 'aurelia-validatejs';
+import {Validator} from 'aurelia-validatejs';
 //http://ilikekillnerds.com/2015/10/observing-objects-and-arrays-in-aurelia/
+//http://blog.durandal.io/2016/05/03/aurelias-new-validation-and-testing-capabilities/
 
-@inject(BindingEngine)
-export class Tasks{
+@inject(BindingEngine, Validator)
+export class Tasks
+{
+  subscriber;
 
   constructor(bindingEngine){
     this.bindingEngine = bindingEngine;
 
     this.heading = 'Todo App';
-    this.model = new TodoItem();
+    
+    this.initializeModel();
+
+    this.errors = [];
     this.store = new TodoRepo();
     this.taskItems = [];
     this.filteredItems = [];
@@ -25,6 +33,32 @@ export class Tasks{
     //note: if delegate is a this.method(splices) which calls filterTasks, filterTasks cannot be found because 'this' is undefined??
     this.bindingEngine.collectionObserver(this.taskItems).subscribe(splices => this.filterTasks());
     this.loadAllTasks();
+  }
+
+  hasErrors()
+  {
+    return !!this.errors.length;
+  }
+
+  initializeModel()
+  {
+    this.model = new TodoItem();
+
+    this.validator = new Validator(this.model)
+      .ensure('description').required().length({minimum: 3, maximum:10});
+    this.reporter = ValidationEngine.getValidationReporter(this);
+    this.subscriber = this.reporter.subscribe(result =>
+    {
+      this.renderErrors(result);
+    });
+  }
+
+  renderErrors(result)
+  {
+    this.errors.splice(0, this.errors.length);
+    result.forEach(error => {
+      this.errors.push(error)
+    });
   }
 
   loadAllTasks()
@@ -64,10 +98,17 @@ export class Tasks{
 
   addTask()
   {
-    this.store.add(this.model);
-    this.taskItems.push(this.model);
-    this.observeTodoItem(this.model);
-    this.model = new TodoItem();
+    if (!this.hasErrors())
+    {
+      this.store.add(this.model);
+      this.taskItems.push(this.model);
+      this.observeTodoItem(this.model);
+      this.model = new TodoItem();
+    }
+    else
+    {
+      alert("Fix the errors first please!");
+    }
   }
 
   filterTasks()

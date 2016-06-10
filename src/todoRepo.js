@@ -3,6 +3,8 @@
  */
 
 import {STORAGE_KEY} from './todoItem';
+import TodoStoreItem from "./todoItem";
+
 
 export default class TodoRepo
 {
@@ -13,7 +15,9 @@ export default class TodoRepo
   add(todoItem)
   {
     let key = STORAGE_KEY + todoItem.description;
-    window.localStorage.setItem(key, JSON.stringify(todoItem));
+    //NOTE: original will have appended observers attached - which screws with the json serialization - save plain copy
+    let todoCopy = new TodoStoreItem(todoItem.description, todoItem.dueDate, todoItem.isDone);
+    window.localStorage.setItem(key, JSON.stringify(todoCopy));
   }
 
   remove(todoItem)
@@ -41,6 +45,7 @@ export default class TodoRepo
   getAll()
   {
 
+    console.log("get all Tasks")
     let items = [];
     for(let i=0; i < window.localStorage.length; i++)
     {
