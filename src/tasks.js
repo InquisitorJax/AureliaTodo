@@ -21,8 +21,9 @@ export class Tasks{
     this.searchText = "";
     this.showCompleted = true;
     this.observeShowCompleted();
-    
-    this.bindingEngine.collectionObserver(this.taskItems).subscribe(this.onTasksChanged);
+
+    //note: if delegate is a this.method(splices) which calls filterTasks, filterTasks cannot be found because 'this' is undefined??
+    this.bindingEngine.collectionObserver(this.taskItems).subscribe(splices => this.filterTasks());
     this.loadAllTasks();
   }
 
@@ -35,7 +36,10 @@ export class Tasks{
       this.observeTodoItem(item);
     }
 
-    this.taskItems = tasks;
+    console.log("Found :" + tasks.length);
+
+    this.taskItems.length = 0;
+    this.taskItems.push.apply(this.taskItems, tasks);
     this.filterTasks();
   }
 
@@ -55,7 +59,6 @@ export class Tasks{
 
   onIsDoneChanged(todoItem)
   {
-    //this.updateFilteredItems(this.filter);
     this.store.update(todoItem)
   }
 
@@ -67,20 +70,17 @@ export class Tasks{
     this.model = new TodoItem();
   }
 
-  onTasksChanged(splices)
-  {
-    this.filterTasks();
-  }
-
   filterTasks()
   {
     console.log("filter items...");
+    console.log("Count original: " + this.taskItems.length);
+
     let filter = this.searchText;
     let showCompleted = this.showCompleted;
 
     let filterByText = this.searchText;
 
-    this.filteredItems = this.taskItems.filter(function (todoItem)
+    let filteredTasks = this.taskItems.filter(function (todoItem)
     {
       let showItem = true;
       if (filterByText) {
@@ -95,6 +95,10 @@ export class Tasks{
 
       return showItem;
     });
+
+    this.filteredItems.length = 0;
+    this.filteredItems.push.apply(this.filteredItems, filteredTasks);
+    console.log("Count filtered: " + this.filteredItems.length);
   }
 
   deleteCompletedTasks()
@@ -116,6 +120,6 @@ export class Tasks{
   deleteAllTasks()
   {
     this.store.clearAll();
-    this.taskItems = [];
+    this.taskItems.splice(0, this.taskItems.length); //NOTE: .length = 0 doesn't fire the array observation event
   }
 }
