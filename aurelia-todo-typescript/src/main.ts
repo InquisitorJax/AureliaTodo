@@ -2,9 +2,9 @@
  * Created by malcolmj on 6/13/2016.
  */
 import 'bootstrap';
+import {Aurelia} from 'aurelia-framework';
 
-
-export function configure(aurelia) {
+export function configure(aurelia: Aurelia) {
     aurelia.use
         .standardConfiguration()
         .developmentLogging();

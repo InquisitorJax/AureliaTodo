@@ -4,7 +4,7 @@
 
 export class App {
     //private _someVariable : integer;
-    message;
+    message : string;
 
     constructor()
     {

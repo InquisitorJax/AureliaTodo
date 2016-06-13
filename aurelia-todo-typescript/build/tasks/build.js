@@ -7,7 +7,7 @@ var sourcemaps = require("gulp-sourcemaps");
 var paths = require('../paths');
 
 gulp.task('tsc', function () {
-    return gulp.src('**/*.ts', { base: '.' })
+    return gulp.src(paths.source, { base: '.' })
         .pipe(sourcemaps.init())
         .pipe(tsc({
             target: 'ES5',
