@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/aurelia-todo-typescript/.idea
+/aurelia-todo-typescript/jspm_packages
+/aurelia-todo-typescript/node_modules
+/aurelia-todo-typescript/typings

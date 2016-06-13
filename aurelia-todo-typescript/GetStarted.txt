@@ -1,0 +1,62 @@
+Goals:
+Primary: Basic todoApp with Aurelia / typescript / tests
+Secondary: Code Coverage reporting, end to end integration testing
+Tertiary: Web Component implementation
+
+Steps followed:
+start with blank folder, and add folders: build, dist, doc, src, styles, test
+install npm from Terminal:
+npm init, and just enter on all the options - this will create node_modules folder and a package.json file
+that lists all the npm packages in the app
+npm installs:
+Gulp: Task runner for building, transpiling, deploying etc. etc.
+pre: if you haven't already, install gulp globally: npm install gulp -g
+npm install gulp --save-dev
+create the gulpfile.js that points to the gulp tasks in the build/tasks directory
+
+define build/paths.js to setup
+
+install require-dir to find the gulp tasks
+npm install require-dir --save-dev
+
+
+setup typescript - ES5 compilation:
+    npm install gulp-typescript --save
+    npm install gulp-sourcemaps --save
+    -> Add build.js file to build/tasks -> add tsc build task
+    setup type definitions for typescript
+    -> typescript definition manager: npm install tsd -g
+
+setup mocha chai testing:
+    setup mocha test runner:
+        pm install gulp-mocha --save
+        tsd install mocha --save
+        npm install chai --save
+        tsd install chai --save
+        npm install source-map-support --save
+        npm install core-js --save
+        -> add test gulp tasks to test.js
+
+setup jspm:
+    global if necessary: npm install jspm -g
+    for project: npm install jspm --save
+    wire up SystemJS Module loader:
+        add to main page:
+        <script src="jspm_packages/system.js"></script>
+        <script src="config.js"></script>
+
+setup aurelia:
+    jspm install core-js aurelia-bootstrapper aurelia-dependency-injection aurelia-router aurelia-http-client
+    tsd install core-js --save
+    Copy all the *.d.ts type definitions inside "jspm_packages\github\aurelia" into a new folder "\typings\aurelia".
+
+setup sass compilation:
+
+
+links:
+Npm:
+https://docs.npmjs.com/ - see Getting Started
+Gulp
+https://markgoodyear.com/2014/01/getting-started-with-gulp/
+typescript aurelia setup
+http://www.mikeobrien.net/blog/setting-up-a-typescript-aurelia-app-and-tests-from-scratch/
