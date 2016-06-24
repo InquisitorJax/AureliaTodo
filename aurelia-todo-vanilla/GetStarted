@@ -25,4 +25,19 @@ Additional dependencies:
 gulp-sass
 gulp-clean
 
-Aurelia Validation from: http://blog.durandal.io/2016/05/03/aurelias-new-validation-and-testing-capabilities/
+make sure to add es7 support to config.js:
+ "es7.decorators",
+ "es7.classProperties"
+
+Aurelia Validation from:
+ http://blog.durandal.io/2016/05/03/aurelias-new-validation-and-testing-capabilities/
+ ...attempting updates from
+ http://blog.durandal.io/2016/06/14/new-validation-alpha-is-here/
+ ... latest Aurelia RC:
+ http://eisenbergeffect.bluespire.com/the-aurelia-release-candidate-is-here/?platform=hootsuite
+sample validation code:
+https://gist.run/?id=381fdb1a4b0865a4c25026187db865ce
+
+
+trouble-shooting:
+https://github.com/aurelia/validation/issues/231

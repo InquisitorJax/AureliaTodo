@@ -26,6 +26,7 @@ setup typescript - ES5 compilation:
     -> Add build.js file to build/tasks -> add tsc build task
     setup type definitions for typescript
     -> typescript definition manager: npm install tsd -g
+    NOTE: Aurelia changing the way typescript gets loaded into the system
 
 setup mocha chai testing:
     setup mocha test runner:
@@ -52,6 +53,9 @@ setup aurelia:
 
 setup sass compilation:
 
+
+...waiting for fix:
+http://blog.durandal.io/2016/06/10/where-did-my-typescript-go/
 
 links:
 Npm:

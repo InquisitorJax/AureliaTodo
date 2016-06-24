@@ -5,24 +5,31 @@
 import TodoRepo from './todoRepo';
 import TodoItem from './todoItem';
 import {BindingEngine, inject} from 'aurelia-framework';
-import {ValidationEngine} from 'aurelia-validatejs';
-import {Validator} from 'aurelia-validatejs';
-//http://ilikekillnerds.com/2015/10/observing-objects-and-arrays-in-aurelia/
-//http://blog.durandal.io/2016/05/03/aurelias-new-validation-and-testing-capabilities/
+import {NewInstance} from 'aurelia-dependency-injection';
+import {ValidationController} from 'aurelia-validation';
+import {validateTrigger} from 'aurelia-validation';
+import {ValidationRules} from 'aurelia-validatejs';
 
-@inject(BindingEngine, Validator)
+@inject(BindingEngine, NewInstance.of(ValidationController))
 export class Tasks
 {
-  subscriber;
 
-  constructor(bindingEngine){
+  rules =  ValidationRules
+            .ensure('description').required()
+            .on(Tasks);
+
+  constructor(bindingEngine, validationController)
+  {
     this.bindingEngine = bindingEngine;
+    this.validationController = validationController;
+    this.validationController.validateTrigger = validateTrigger.change;
+
+    this.description = '';
 
     this.heading = 'Todo App';
     
     this.initializeModel();
 
-    this.errors = [];
     this.store = new TodoRepo();
     this.taskItems = [];
     this.filteredItems = [];
@@ -35,31 +42,11 @@ export class Tasks
     this.loadAllTasks();
   }
 
-  hasErrors()
-  {
-    return !!this.errors.length;
-  }
-
   initializeModel()
   {
     this.model = new TodoItem();
-
-    this.validator = new Validator(this.model)
-      .ensure('description').required().length({minimum: 3, maximum:10});
-    this.reporter = ValidationEngine.getValidationReporter(this);
-    this.subscriber = this.reporter.subscribe(result =>
-    {
-      this.renderErrors(result);
-    });
   }
 
-  renderErrors(result)
-  {
-    this.errors.splice(0, this.errors.length);
-    result.forEach(error => {
-      this.errors.push(error)
-    });
-  }
 
   loadAllTasks()
   {
@@ -98,16 +85,18 @@ export class Tasks
 
   addTask()
   {
-    if (!this.hasErrors())
+    let errors = this.validationController.validate();
+
+    if (errors.length > 0)
     {
+      alert("Fix the errors");
+    }
+    else {
       this.store.add(this.model);
       this.taskItems.push(this.model);
       this.observeTodoItem(this.model);
       this.model = new TodoItem();
-    }
-    else
-    {
-      alert("Fix the errors first please!");
+
     }
   }
 

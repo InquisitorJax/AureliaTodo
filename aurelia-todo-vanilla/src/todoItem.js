@@ -1,8 +1,10 @@
 /**
  * Created by malcolmj on 6/6/2016.
  */
+
+
+
 export const STORAGE_KEY = 'Todo';
-import {length, required} from 'aurelia-validatejs';
 
 export default class TodoItem
 {
@@ -17,6 +19,7 @@ export default class TodoItem
     this.isDone = false;
   }
 }
+
 
 export default class TodoStoreItem
 {
