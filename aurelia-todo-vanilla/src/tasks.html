@@ -6,18 +6,16 @@
           validation-renderer="bootstrap-form"
           style="width: 250px">
       <div class="form-group">
-        <label class="control-label" for="description">First Name</label>
+        <label class="control-label" for="description">Task Description</label>
         <input type="text" class="form-control" id="description" placeholder="Task Description"
-               value.bind="description & validate:rules">
+               value.bind="model.description & validate:rules">
       </div>
       <div class="form-group">
-        <label for="dueDate">Task Due Date</label>
-        <input type="date"
-               value.bind="model.dueDate"
-               class="form-control"
-               id="dueDate"
-               placeholder="due Date">
+        <label class="control-label" for="dueDate">Task Due Date</label>
+        <input type="date" class="form-control" id="dueDate" placeholder="Task Due Date"
+               value.bind="model.dueDate & validate:rules">
       </div>
+
       <button type="submit" class="btn btn-default">Add Task</button>
     </form>
     <br/>

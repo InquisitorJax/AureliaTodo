@@ -2,16 +2,10 @@
  * Created by malcolmj on 6/6/2016.
  */
 
-
-
 export const STORAGE_KEY = 'Todo';
 
 export default class TodoItem
 {
-  // @length({ minimum: 4, maximum: 25 })  description = '';
-  // @required dueDate = '';
-  // isDone = false;
-
   constructor()
   {
     this.description = '';

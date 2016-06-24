@@ -14,17 +14,12 @@ import {ValidationRules} from 'aurelia-validatejs';
 export class Tasks
 {
 
-  rules =  ValidationRules
-            .ensure('description').required()
-            .on(Tasks);
 
   constructor(bindingEngine, validationController)
   {
     this.bindingEngine = bindingEngine;
     this.validationController = validationController;
     this.validationController.validateTrigger = validateTrigger.change;
-
-    this.description = '';
 
     this.heading = 'Todo App';
     
@@ -45,6 +40,11 @@ export class Tasks
   initializeModel()
   {
     this.model = new TodoItem();
+    this.rules =  ValidationRules
+      .ensure('description').required().length({minimum: 3, maximum: 10})
+      .ensure('dueDate').required()
+      .on(this.model);
+
   }
 
 
@@ -87,16 +87,12 @@ export class Tasks
   {
     let errors = this.validationController.validate();
 
-    if (errors.length > 0)
+    if (errors.length == 0)
     {
-      alert("Fix the errors");
-    }
-    else {
       this.store.add(this.model);
       this.taskItems.push(this.model);
       this.observeTodoItem(this.model);
       this.model = new TodoItem();
-
     }
   }
 
