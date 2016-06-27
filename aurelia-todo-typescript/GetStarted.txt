@@ -65,7 +65,7 @@ setup mocha chai testing:
 setup jspm:
     global if necessary: npm install jspm -g
     for project: npm install jspm --save-dev
-    add "*": "src/*", to paths in config.js
+    add "*": "dist/*", to paths in config.js
 
 Add Index.html & index.js
     wire up SystemJS Module loader:
