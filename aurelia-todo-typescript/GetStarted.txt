@@ -13,8 +13,24 @@ Gulp: Task runner for building, transpiling, deploying etc. etc.
 pre: if you haven't already, install gulp globally: npm install gulp -g
 npm install gulp --save-dev
 create the gulpfile.js that points to the gulp tasks in the build/tasks directory
+add this:
+require('require-dir')('build/tasks');
 
 define build/paths.js to setup
+var appRoot = 'src/';
+var outputRoot = 'dist/';
+
+module.exports = {
+    root: appRoot,
+    source: appRoot + '**/*.ts',
+    html: appRoot + '**/*.html',
+    output: outputRoot,
+    dtsSrc: [
+        './typings/**/*.d.ts',
+        './custom_typings/**/*.d.ts'
+    ]
+};
+
 
 install require-dir to find the gulp tasks
 npm install require-dir --save-dev
@@ -23,44 +39,54 @@ npm install require-dir --save-dev
 setup typescript - ES5 compilation:
     npm install gulp-typescript --save
     npm install gulp-sourcemaps --save
-    -> Add build.js file to build/tasks -> add tsc build task
+    [optional]-> Add build.js file to build/tasks -> add tsc build task (see build.js from aurelia-skeleton-typescript)
     setup type definitions for typescript
-    -> typescript definition manager: npm install tsd -g
-    NOTE: Aurelia changing the way typescript gets loaded into the system
+    -> typescript definition manager:
+    npm install typings -g --save-dev
+    sidenote: ..make sure typings up to date if installed: npm i -g typings
+    typings init (adds the initial typings.json file)
+    use typescript generation settings in webstorm
+        - generate files to dist folder
+        - watch on changed VCS files
+    add tsconfig.json from project
+
+
 
 setup mocha chai testing:
     setup mocha test runner:
         pm install gulp-mocha --save
-        tsd install mocha --save
+        tsd install mocha --save //TODO: typings install
         npm install chai --save
-        tsd install chai --save
+        tsd install chai --save //TODO: typings install
         npm install source-map-support --save
         npm install core-js --save
         -> add test gulp tasks to test.js
 
 setup jspm:
     global if necessary: npm install jspm -g
-    for project: npm install jspm --save
+    for project: npm install jspm --save-dev
+    add "*": "src/*", to paths in config.js
+
+Add Index.html & index.js
     wire up SystemJS Module loader:
         add to main page:
         <script src="jspm_packages/system.js"></script>
         <script src="config.js"></script>
 
 setup aurelia:
-    jspm install core-js aurelia-bootstrapper aurelia-dependency-injection aurelia-router aurelia-http-client
-    tsd install core-js --save
-    Copy all the *.d.ts type definitions inside "jspm_packages\github\aurelia" into a new folder "\typings\aurelia".
+    jspm install aurelia-framework
+    [temp]typings: copy typings.json from aurelia typescript project
+    run: typings install
 
 setup sass compilation:
 
+setup bundling to combine all the tiny javascript files for performance reasons (not nece when http/2 is released)
 
-...waiting for fix:
-http://blog.durandal.io/2016/06/10/where-did-my-typescript-go/
 
 links:
 Npm:
 https://docs.npmjs.com/ - see Getting Started
 Gulp
 https://markgoodyear.com/2014/01/getting-started-with-gulp/
-typescript aurelia setup
+typescript aurelia setup (notes here updated to reflect tsd replacement with typings install)
 http://www.mikeobrien.net/blog/setting-up-a-typescript-aurelia-app-and-tests-from-scratch/

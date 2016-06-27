@@ -1,18 +1,15 @@
 /**
- * Created by malcolmj on 6/13/2016.
+ * Created by malcolmj on 6/27/2016.
  */
 
 export class App {
-    //private _someVariable : integer;
-    message : string;
-
-    constructor()
-    {
+    message: string;
+    
+    constructor() {
         this.message = 'Oh hai';
     }
 
-    exclaim()
-    {
-        this.message += '!';
+    exclaim() {
+        this.message += '!!!';
     }
 }

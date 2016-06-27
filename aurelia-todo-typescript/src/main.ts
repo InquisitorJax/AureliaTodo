@@ -1,5 +1,5 @@
 /**
- * Created by malcolmj on 6/13/2016.
+ * Created by malcolmj on 6/27/2016.
  */
 import 'bootstrap';
 import {Aurelia} from 'aurelia-framework';
@@ -8,11 +8,9 @@ export function configure(aurelia: Aurelia) {
     aurelia.use
         .standardConfiguration()
         .developmentLogging();
-        //.plugin('aurelia-validatejs');
 
     //Uncomment the line below to enable animation.
     //aurelia.use.plugin('aurelia-animator-css');
-    //if the css animator is enabled, add swap-order="after" to all router-view elements
 
     //Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
     //aurelia.use.plugin('aurelia-html-import-template-loader')

@@ -15,4 +15,8 @@ module.exports = {
     output: outputRoot,
     exportSrv: exportSrvRoot,
     doc: './doc',
+    dtsSrc: [
+        './typings/**/*.d.ts',
+        './custom_typings/**/*.d.ts'
+    ]
 };
