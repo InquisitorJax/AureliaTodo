@@ -84,6 +84,35 @@ setup sass compilation:
 
 setup bundling to combine all the tiny javascript files for performance reasons (not nece when http/2 is released)
 
+Basic app files
+app.html
+<template>
+    <p>${message}</p>
+    <button click.delegate="exclaim()">Exclaim!</button>
+</template>
+app.ts
+export class App {
+    message: string;
+
+    constructor() {
+        this.message = 'Oh hai';
+    }
+
+    exclaim() {
+        this.message += '!!!';
+    }
+}
+main.ts
+import 'bootstrap';
+import {Aurelia} from 'aurelia-framework';
+
+export function configure(aurelia: Aurelia) {
+    aurelia.use
+        .standardConfiguration()
+        .developmentLogging();
+    aurelia.start().then(() => aurelia.setRoot());
+}
+
 
 links:
 Npm:

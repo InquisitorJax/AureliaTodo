@@ -1,0 +1,58 @@
+<template>
+    <section>
+        <h2>${heading}</h2>
+        <script src="validate.js"></script>
+        <form role="form" submit.delegate="addTask()"
+              validation-renderer="bootstrap-form"
+              style="width: 250px">
+            <div class="form-group">
+                <label class="control-label" for="description">Task Description</label>
+                <input type="text" class="form-control" id="description" placeholder="Task Description"
+                       value.bind="model.description & validate:rules">
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="dueDate">Task Due Date</label>
+                <input type="date" class="form-control" id="dueDate" placeholder="Task Due Date"
+                       value.bind="model.dueDate & validate:rules">
+            </div>
+
+            <button type="submit" class="btn btn-default">Add Task</button>
+        </form>
+        <br/>
+        <div>
+            <div class="filter" >
+                <label >Filter</label>
+                <input type="text"
+                       value.bind="searchText"
+                       placeholder="type search text..."
+                       keyup.delegate="filterTasks()"/>
+            </div>
+            <div class="switch" >
+                <label>Show Completed</label>
+                <input id="cmn-toggle-1"
+                       class="cmn-toggle cmn-toggle-round"
+                       type="checkbox"
+                       checked.bind="showCompleted">
+                <label for="cmn-toggle-1"></label>
+            </div>
+
+        </div>
+
+        <div class="toolbar">
+            <button  click.delegate="deleteCompletedTasks()">Delete Done</button>
+            <button click.delegate="deleteAllTasks()">Delete All</button>
+        </div>
+
+        <br/>
+        <div >
+            <ul id="todoList">
+                <li repeat.for="todoItem of filteredItems" class.bind="todoItem.isDone ? 'done' : ''">
+                    <input type="checkbox" checked.bind="todoItem.isDone" />
+                    <span id="spanTodo">${todoItem.description}</span>
+                    <span id="spanDate">${todoItem.dueDate}</span>
+                </li>
+            </ul>
+        </div>
+
+    </section>
+</template>

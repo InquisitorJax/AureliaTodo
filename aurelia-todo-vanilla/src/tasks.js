@@ -132,7 +132,7 @@ export class Tasks
 
     let completedTasks = this.taskItems.filter(function(task) {
       return task.isDone;
-    })
+    });
 
     for (let item of completedTasks)
     {

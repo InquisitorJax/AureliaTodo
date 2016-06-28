@@ -5,6 +5,7 @@ var appRoot = 'src/';
 var outputRoot = 'dist/';
 var exportSrvRoot = 'export/';
 var testRoot = 'test/';
+var styles = 'styles/';
 
 module.exports = {
     root: appRoot,
@@ -14,6 +15,8 @@ module.exports = {
     test: testRoot + '**/*.js',
     output: outputRoot,
     exportSrv: exportSrvRoot,
+    css:  styles + '**/*.css',
+    sass:  styles + '**/*.scss',
     doc: './doc',
     dtsSrc: [
         './typings/**/*.d.ts',

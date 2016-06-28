@@ -1,15 +1,20 @@
 /**
- * Created by malcolmj on 6/27/2016.
+ * Created by malcolmj on 6/3/2016.
  */
+/** This is the View-Model **/
 
-export class App {
-    message: string;
-    
-    constructor() {
-        this.message = 'Oh hai';
-    }
+import {Router, RouterConfiguration} from 'aurelia-router';
 
-    exclaim() {
-        this.message += '!!!';
+export class App
+{
+    router: Router;
+
+    configureRouter(config: RouterConfiguration, router: Router)
+    {
+        config.title = 'Todo App';
+        config.map([
+            { route: ['','tasks'], moduleId: 'tasks', nav: true, title:'Tasks with Aurelia' }
+        ]);
+        this.router = router;
     }
 }
