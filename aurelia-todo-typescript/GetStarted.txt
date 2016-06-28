@@ -75,6 +75,8 @@ Add Index.html & index.js
 
 setup aurelia:
     jspm install aurelia-framework
+    jspm install aurelia-bootstrapper
+    jspm install bootstrap
     [temp]typings: copy typings.json from aurelia typescript project
     run: typings install
 

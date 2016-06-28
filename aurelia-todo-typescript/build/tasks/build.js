@@ -15,7 +15,7 @@ var typescript = require('gulp-typescript');
 // by errors from other gulp plugins
 // https://www.npmjs.com/package/gulp-plumber
 var typescriptCompiler = typescriptCompiler || null;
-gulp.task('build-system', function() {
+gulp.task('build-ts', function() {
     if(!typescriptCompiler) {
         typescriptCompiler = typescript.createProject('tsconfig.json', {
             "typescript": require('typescript')
