@@ -4,39 +4,40 @@ Secondary: Code Coverage reporting, end to end integration testing
 Tertiary: Web Component implementation
 
 Steps followed:
-start with blank folder, and add folders: build, dist, doc, src, styles, test
-install npm from Terminal:
-npm init, and just enter on all the options - this will create node_modules folder and a package.json file
-that lists all the npm packages in the app
-npm installs:
-Gulp: Task runner for building, transpiling, deploying etc. etc.
-pre: if you haven't already, install gulp globally: npm install gulp -g
-npm install gulp --save-dev
-create the gulpfile.js that points to the gulp tasks in the build/tasks directory
-add this:
-require('require-dir')('build/tasks');
+1) Create Folders:
+    start with blank folder, and add folders: build, dist, doc, src, styles, test
+2) Install npm from Terminal:
+    npm init, and just enter on all the options - this will create node_modules folder and a package.json file
+    that lists all the npm packages in the app
+3) Npm installs:
+    Gulp: Task runner for building, transpiling, deploying etc. etc.
+    pre: if you haven't already, install gulp globally: npm install gulp -g
+    npm install gulp --save-dev
+    create the gulpfile.js that points to the gulp tasks in the build/tasks directory
+    add this:
+    require('require-dir')('build/tasks');
+4) Initial Build setup
+    define build/paths.js to setup:
+    /*
+    var appRoot = 'src/';
+    var outputRoot = 'dist/';
 
-define build/paths.js to setup
-var appRoot = 'src/';
-var outputRoot = 'dist/';
+    module.exports = {
+        root: appRoot,
+        source: appRoot + '**/*.ts',
+        html: appRoot + '**/*.html',
+        output: outputRoot,
+        dtsSrc: [
+            './typings/**/*.d.ts',
+            './custom_typings/**/*.d.ts'
+        ]
+    };
+    */
 
-module.exports = {
-    root: appRoot,
-    source: appRoot + '**/*.ts',
-    html: appRoot + '**/*.html',
-    output: outputRoot,
-    dtsSrc: [
-        './typings/**/*.d.ts',
-        './custom_typings/**/*.d.ts'
-    ]
-};
+5) Install require-dir to find the gulp tasks
+    npm install require-dir --save-dev
 
-
-install require-dir to find the gulp tasks
-npm install require-dir --save-dev
-
-
-setup typescript - ES5 compilation:
+6) Setup Typescript - ES5 compilation:
     npm install gulp-typescript --save
     npm install gulp-sourcemaps --save
     [optional]-> Add build.js file to build/tasks -> add tsc build task (see build.js from aurelia-skeleton-typescript)
@@ -121,3 +122,7 @@ Gulp
 https://markgoodyear.com/2014/01/getting-started-with-gulp/
 typescript aurelia setup (notes here updated to reflect tsd replacement with typings install)
 http://www.mikeobrien.net/blog/setting-up-a-typescript-aurelia-app-and-tests-from-scratch/
+
+Things you still want to install:
+ - bundling
+ - testing
